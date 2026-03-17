@@ -183,6 +183,22 @@ Valid dictionary to overwrite template lines:
                 move_vals["line_ids"].append(
                     Command.create(self._prepare_move_line(line, amount))
                 )
+        
+        total_debit = sum(cmd[2].get("debit", 0.0) for cmd in move_vals["line_ids"])
+        total_credit = sum(cmd[2].get("credit", 0.0) for cmd in move_vals["line_ids"])
+        if not company_cur.is_zero(total_debit - total_credit):
+            raise UserError(
+                _(
+                    "The journal entry is not balanced.\n"
+                    "Total Debit: %(debit)s\n"
+                    "Total Credit: %(credit)s\n"
+                    "Difference: %(diff)s",
+                    debit=total_debit,
+                    credit=total_credit,
+                    diff=abs(total_debit - total_credit),
+                )
+            )
+
         move = self.env["account.move"].create(move_vals)
         msg = _(
             "Journal entry created from template "
