@@ -443,7 +443,7 @@ msgstr ""
 #. module: account_move_template
 #: model:ir.model.fields.selection,name:account_move_template.selection__account_move_template_line__type__input
 msgid "User input"
-msgstr ""
+msgstr "Ingresado por el usuario"
 
 #. module: account_move_template
 #. odoo-python
