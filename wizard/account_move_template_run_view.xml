@@ -36,7 +36,7 @@
                                 widget="analytic_distribution"
                                 groups="analytic.group_analytic_accounting"
                             />
-                            <field name="tax_line_id" invisible="not tax_line_id" />
+                            <field name="tax_line_id" column_invisible="1" />
                             <field
                                 name="tax_ids"
                                 widget="many2many_tags"
@@ -45,9 +45,9 @@
                             <field name="move_line_type" widget="badge" decoration-info="move_line_type == 'cr'" decoration-success="move_line_type == 'dr'"/>
                             <field name="amount" />
                             <field name="note" />
-                            <field name="payment_term_id" />
-                            <field name="company_id" invisible="1" />
-                            <field name="company_currency_id" invisible="1" />
+                            <field name="payment_term_id" column_invisible="1" />
+                            <field name="company_id" column_invisible="1" />
+                            <field name="company_currency_id" column_invisible="1" />
                         </list>
                     </field>
                 </group>
